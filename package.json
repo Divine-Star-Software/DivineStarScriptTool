@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Divine Star Script Tool",
   "main": "bin/index.js",
+  "files": ["./bin/"],
   "bin": {
     "dsst": "./bin/index.js"
   },
