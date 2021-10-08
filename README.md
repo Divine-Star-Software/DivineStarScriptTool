@@ -18,3 +18,6 @@
 ![GitHub followers](https://img.shields.io/github/followers/lucasdamianjohnson?color=purple&style=plastic)
 ![GitHub stars](https://img.shields.io/github/stars/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
 ![GitHub watchers](https://img.shields.io/github/watchers/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
+
+### Dependencies
+![yargs](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/yargs);

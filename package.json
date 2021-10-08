@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Divine Star Script Tool",
   "main": "bin/index.js",
-  "files": ["./bin/"],
+  "files": [
+    "./bin/"
+  ],
   "bin": {
     "dsst": "./bin/index.js"
   },
@@ -18,8 +20,6 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "fs-extra": "^10.0.0",
-    "prompt": "^1.1.0",
     "yargs": "^13.2.4"
   }
 }

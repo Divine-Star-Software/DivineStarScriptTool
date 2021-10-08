@@ -10,17 +10,17 @@ function ImportDependencies(dependencies) {
         const watch = require("fs").watch;
         global.watch = watch;
     }
-    if (dependencies.NEEDFSEXTRA) {
+    /*   if(dependencies.NEEDFSEXTRA){
         const fsExtra = require("fs-extra");
-        global.fsExtra = fsExtra;
-    }
+        (global as any).fsExtra = fsExtra;
+      } */
     if (dependencies.NEEDRDL) {
         const rdl = require("readline");
         global.rdl = rdl;
     }
-    if (dependencies.NEEDPROMPT) {
-        const prompt = require("prompt");
-        global.rdl = prompt;
-    }
+    /*  if (dependencies.NEEDPROMPT) {
+       const prompt = require("prompt");
+       (global as any).rdl = prompt;
+     } */
 }
 exports.ImportDependencies = ImportDependencies;
