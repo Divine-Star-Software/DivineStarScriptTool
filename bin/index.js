@@ -1,5 +1,13 @@
 #! /usr/bin/env node
 "use strict";
+/**
+ * ![](https://divinestarapparel.com/wp-content/uploads/2021/02/logo-small.png)
+# &#9733; Divine Star Script Tool &#9733;
+
+@author Luke Johnson
+@since 9-19-2021
+@version 0.0.1
+*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const ImportDependencies_js_1 = require("./init/ImportDependencies.js");
 require("./init/ImportHelpers.js");

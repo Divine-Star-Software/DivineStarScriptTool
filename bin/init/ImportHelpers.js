@@ -4,14 +4,14 @@ const ProgramSplashScreen_js_1 = require("../Helpers/Log/ProgramSplashScreen.js"
 const ServiceBar_js_1 = require("../Helpers/Log/ServiceBar.js");
 const GetConfigData_js_1 = require("../Helpers/GetConfigData.js");
 const Sleep_js_1 = require("../Helpers/Log/Sleep.js");
-const DSLogger_js_1 = require("../Helpers/Log/DSLogger.js");
+//import {DSLogger} from "../Helpers/Log/DSLogger.js";
 const StartSequence_js_1 = require("../Helpers/StartSequence.js");
 const ValidateConfigData_js_1 = require("../Helpers/ValidateConfigData.js");
 const ComposeScriptMap_js_1 = require("../Helpers/ScriptMap/ComposeScriptMap.js");
 const PruneScript_js_1 = require("../Helpers/Prune/PruneScript.js");
 const DeployScriptMap_js_1 = require("../Helpers/ScriptMap/DeployScriptMap.js");
 const RemoveComments_js_1 = require("../Helpers/Prune/RemoveComments.js");
-global.dsLog = new DSLogger_js_1.DSLogger();
+//(global as any).dsLog = new DSLogger();
 global.RemoveComments = RemoveComments_js_1.RemoveComments;
 global.DeployScriptMap = DeployScriptMap_js_1.DeployScriptMap;
 global.PruneScript = PruneScript_js_1.PruneScript;

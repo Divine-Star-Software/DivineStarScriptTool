@@ -7,8 +7,8 @@
 @since 9-19-2021
 @version 0.0.1
 */
-import type { DSLoggerInterface } from "./meta/DSLogger/DSLogger.interface.js";
-declare const dsLog: DSLoggerInterface;
+
+declare const dsLog: DSLogger;
 import { ImportDependencies } from "./init/ImportDependencies.js";
 import "./init/ImportHelpers.js";
 import "./init/ImportCommands.js";
