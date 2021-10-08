@@ -10,6 +10,6 @@
 
 
 ![GitHub stars](https://img.shields.io/github/languages/top/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
-![GitHub forks](https://img.shields.io/github/forks/lucasdamianjohnson/DivineStarScriptToolY?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/lucasdamianjohnson/DivineStarScriptToolY?style=social)
+![GitHub forks](https://img.shields.io/github/license/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
+![GitHub watchers](https://img.shields.io/github/downloads/lucasdamianjohnson/DivineStarScriptTool/total?color=purple&style=plastic)
 ![GitHub followers](https://img.shields.io/github/followers/lucasdamianjohnson?style=social)
