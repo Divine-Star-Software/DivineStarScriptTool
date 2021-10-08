@@ -21,3 +21,11 @@
 
 ### Dependencies
 ![yargs](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/yargs)
+
+## How To Use
+---
+This is a command line tool. To install this you must have node and npm installed. 
+First you must install it globally on your system.
+```console
+npm install -g dsst
+```
