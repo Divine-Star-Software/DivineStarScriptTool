@@ -1,6 +1,6 @@
 {
   "name": "dsst",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Divine Star Script Tool",
   "main": "bin/index.js",
   "files": [
@@ -13,7 +13,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "homepage": "https://github.com/lucasdamianjohnson/DivineStarScriptTool#readme",
-  "keywords": ["script prune","prune","script parse","auto move","auto prune","auto script parse","auto script move"],
+  "keywords": [
+    "script prune",
+    "prune",
+    "script parse",
+    "auto move",
+    "auto prune",
+    "auto script parse",
+    "auto script move"
+  ],
   "author": "Divine Star LLC",
   "license": "MIT",
   "devDependencies": {
