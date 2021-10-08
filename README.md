@@ -21,7 +21,7 @@
 
 ### Dependencies
 ![yargs](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/yargs)
-![dslog](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/dslog)
+![dslog](https://img.shields.io/npm/dependency-version/dsst/dslog?style=plastic)
 ## What It Does
 This is a tool to create different versions of scripts. Simply it lets you define different code sections with a unqiue comment and either include or remove those
 code sections to create different versions. You define where you want the tool to pull scripts from and where you want the scripts to be put.
