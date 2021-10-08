@@ -11,7 +11,8 @@ Parses a script given the code sections.
 */
 export async function PruneScript(
   file: string,
-  codeSection: ConfigDataCodeSection[]
+  codeSection: ConfigDataCodeSection[],
+  keepComments: boolean = true
 ) {
   let newData = file;
   for (let cs of codeSection) {
@@ -19,6 +20,9 @@ export async function PruneScript(
       const startIndex = newData.indexOf(`//${cs.start}`);
       const endIndex = newData.indexOf(`//${cs.end}`) + cs.end.length + 2;
       newData = newData.replace(newData.substring(startIndex, endIndex), "");
+      if (!keepComments) {
+        newData = RemoveComments(newData);
+      }
     }
   }
   return newData;

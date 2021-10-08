@@ -88,7 +88,9 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
         return;
       }
       (async () => {
-        dsLog.showAt("{----==== UPDATE COMING ====----}", "Warning", 5).setRow(6);
+        dsLog
+          .showAt("{----==== UPDATE COMING ====----}", "Warning", 5)
+          .setRow(6);
         await Sleep(500);
         file = file.replace("\\", "/");
         const path = `${directory}/${file}`;
@@ -99,12 +101,13 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
           const cs = pruneSections.get(o.codeSection);
           if (cs) {
             dsLog.show(`--Prunning for ${o.codeSection}`, "Raw");
-            const newFile = await PruneScript(fileRaw, cs);
+            let newFile = await PruneScript(fileRaw, cs,o.keepComments);
             dsLog.show(`==Done prunning for ${o.codeSection}`, "Raw");
             await Sleep(100);
             if (Array.isArray(o.dir)) {
               for (let d of o.dir) {
                 dsLog.show(`--Writing to ${d}/${file}`, "Raw");
+
                 await fs.writeFile(`${d}/${file}`, newFile);
                 dsLog.show(`==Done writing to ${d}/${file}`, "Raw");
               }

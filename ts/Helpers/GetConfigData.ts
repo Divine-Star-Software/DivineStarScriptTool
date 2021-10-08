@@ -3,7 +3,7 @@ import type { ConfigData } from "../meta/Config/ConfigData.structure";
 export async function GetConfigData() : Promise<ConfigData> {
 
     try{
-    const configDataRaw = await fs.readFile("dsconfig.dsd", "utf8");
+    const configDataRaw = await fs.readFile(".dsconfig", "utf8");
     const removedComments = _removeComments(configDataRaw);
 
     const configData =  JSON.parse(removedComments);

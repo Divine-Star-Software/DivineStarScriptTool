@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ImportDependencies_js_1 = require("./init/ImportDependencies.js");
 require("./init/ImportHelpers.js");
 require("./init/ImportCommands.js");
+const GetConfigDataTemplate_js_1 = require("./Helpers/GetConfigDataTemplate.js");
 const yargs = require("yargs");
 global.yargs = yargs;
 const options = yargs
@@ -44,11 +45,16 @@ if (options["a"]) {
 if (options["p"]) {
     DOING = "PARSE";
     dependencies.NEEDFS = true;
+    dependencies.NEEDRDL = true;
 }
 if (options["cc"]) {
     DOING = "CREATECONFIG";
     dependencies.NEEDFS = true;
-    dependencies.NEEDPROMPT = true;
+    //dependencies.NEEDPROMPT = true;
+    dependencies.NEEDRDL = true;
+}
+if (DOING == "") {
+    dependencies.NEEDRDL = true;
 }
 ImportDependencies_js_1.ImportDependencies(dependencies);
 if (DOING == "") {
@@ -58,19 +64,36 @@ if (DOING == "") {
     process.exit(0);
 }
 if (DOING == "CREATECONFIG") {
-    process.exit(0);
+    try {
+        const data = GetConfigDataTemplate_js_1.GetConfigDataTemplate();
+        (async () => {
+            dsLog
+                .splashScreen()
+                .sleep(500)
+                .showSleep("Creating default config file.", "Info");
+            await fs.writeFile("./.dsconfig", data);
+            dsLog.showSleep("Config was created", "Good");
+            process.exit(1);
+        })();
+    }
+    catch (error) {
+        console.log(error.message);
+        process.exit(0);
+    }
 }
-//The functions below require the config data.
-(async () => {
-    //Get and validate the config data
-    const configData = await StartSequence();
-    if (DOING == "AUTO") {
-        Auto(configData);
-    }
-    if (DOING == "PARSE") {
-        ScriptParse(configData);
-    }
-})();
+else {
+    //The functions below require the config data.
+    (async () => {
+        //Get and validate the config data
+        const configData = await StartSequence();
+        if (DOING == "AUTO") {
+            Auto(configData);
+        }
+        if (DOING == "PARSE") {
+            ScriptParse(configData);
+        }
+    })();
+}
 process.on("beforeExit", (code) => {
     // console.clear();
 });

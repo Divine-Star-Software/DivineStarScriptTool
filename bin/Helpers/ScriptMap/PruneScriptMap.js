@@ -10,9 +10,9 @@ Prunes a script map with the given code section.
 @since 10-4-2021
 @version 0.0.1
 */
-async function PruneScriptMap(map, codeSection) {
+async function PruneScriptMap(map, codeSection, keepComments = true) {
     try {
-        const newMap = await _traverse(map, codeSection);
+        const newMap = await _traverse(map, codeSection, keepComments);
         return newMap;
     }
     catch (error) {
@@ -21,9 +21,9 @@ async function PruneScriptMap(map, codeSection) {
     }
 }
 exports.PruneScriptMap = PruneScriptMap;
-async function _traverse(map, codeSection) {
+async function _traverse(map, codeSection, keepComments = true) {
     for (let file of map.files) {
-        file.data = await PruneScript(file.data, codeSection);
+        file.data = await PruneScript(file.data, codeSection, keepComments);
     }
     map.directories.forEach((item) => {
         _traverse(item, codeSection);

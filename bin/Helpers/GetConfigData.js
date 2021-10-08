@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetConfigData = void 0;
 async function GetConfigData() {
     try {
-        const configDataRaw = await fs.readFile("dsconfig.dsd", "utf8");
+        const configDataRaw = await fs.readFile(".dsconfig", "utf8");
         const removedComments = _removeComments(configDataRaw);
         const configData = JSON.parse(removedComments);
         return configData;

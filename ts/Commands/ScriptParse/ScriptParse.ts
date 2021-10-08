@@ -106,13 +106,14 @@ async function initParse(
         for (let d of o.dir) {
           const map = scriptMaps.get(o.codeSection);
           if (map) {
-            await DeployScriptMap(d, map);
+         
+            await DeployScriptMap(d, map,o.keepComments);
           }
         }
       } else {
         const map = scriptMaps.get(o.codeSection);
         if (map) {
-          await DeployScriptMap(o.dir, map);
+          await DeployScriptMap(o.dir, map,o.keepComments);
         }
       }
       await dsLog.incrementProgressBar(`${dir}-deploy`, (1 / numOuputs) * 100);

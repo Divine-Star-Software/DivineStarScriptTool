@@ -12,11 +12,11 @@ Given a script map it will replicate it at the given location.
 @since 10-4-2021
 @version 0.0.1
 */
-async function DeployScriptMap(outdir, map) {
+async function DeployScriptMap(outdir, map, keepComments = true) {
     deployPath = outdir;
     scriptPath = map.path;
     try {
-        await _traverse(map);
+        await _traverse(map, keepComments);
         return true;
     }
     catch (error) {
@@ -29,7 +29,7 @@ function _getRelativePath(path) {
     const dir = path.replace(scriptPath, "");
     return `${deployPath}/${dir}`;
 }
-async function _traverse(map) {
+async function _traverse(map, keepComments = true) {
     try {
         const path = _getRelativePath(map.path);
         try {
@@ -44,11 +44,16 @@ async function _traverse(map) {
             }
         }
         for (let file of map.files) {
+            if (!keepComments) {
+                file.data = RemoveComments(file.data);
+            }
+            else {
+            }
             await fs.writeFile(`${path}/${file.path}`, file.data);
         }
         // map.files.forEach((file) => {});
         map.directories.forEach((item) => {
-            _traverse(item);
+            _traverse(item, keepComments);
         });
         return map;
     }

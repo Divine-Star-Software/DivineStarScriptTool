@@ -19,10 +19,11 @@ Prunes a script map with the given code section.
 */
 export async function PruneScriptMap(
   map: mapItem,
-  codeSection: ConfigDataCodeSection[]
+  codeSection: ConfigDataCodeSection[],
+  keepComments : boolean = true
 ): Promise<mapItem> {
   try {
-    const newMap = await _traverse(map, codeSection);
+    const newMap = await _traverse(map, codeSection,keepComments);
     return newMap;
   } catch (error: any) {
     console.log(error);
@@ -30,9 +31,9 @@ export async function PruneScriptMap(
   }
 }
 
-async function _traverse(map: mapItem, codeSection: ConfigDataCodeSection[]) {
+async function _traverse(map: mapItem, codeSection: ConfigDataCodeSection[],keepComments : boolean = true) {
   for (let file of map.files) {
-    file.data = await PruneScript(file.data, codeSection);
+    file.data = await PruneScript(file.data, codeSection,keepComments);
   }
 
   map.directories.forEach((item) => {

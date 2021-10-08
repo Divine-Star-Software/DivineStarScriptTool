@@ -23,10 +23,12 @@ declare const StartSequence: () => Promise<configData>;
 declare const Sleep: Function;
 declare const PruneScript: (
   file: string,
-  codeSection: ConfigDataCodeSection[]
+  codeSection: ConfigDataCodeSection[],
+  keepComments ?: boolean
 ) => string;
 declare const ServiceBar: Function;
 declare const ProgramSplashScreen: Function;
+declare const RemoveComments: Function;
 declare const GetConfigData: Function;
 declare const ComposeScriptMap: (
   path: string,
@@ -34,7 +36,8 @@ declare const ComposeScriptMap: (
 ) => Promise<mapItem>;
 declare const DeployScriptMap: (
   outdir: string,
-  map: mapItem
+  map: mapItem,
+  keepComments ?: boolean
 ) => Promise<boolean>;
 
 type DSLoggerInterface =

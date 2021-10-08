@@ -12,6 +12,7 @@ declare const dsLog: DSLoggerInterface;
 import { ImportDependencies } from "./init/ImportDependencies.js";
 import "./init/ImportHelpers.js";
 import "./init/ImportCommands.js";
+import { GetConfigDataTemplate } from "./Helpers/GetConfigDataTemplate.js";
 
 const yargs = require("yargs");
 (global as any).yargs = yargs;
@@ -58,11 +59,16 @@ if (options["a"]) {
 if (options["p"]) {
   DOING = "PARSE";
   dependencies.NEEDFS = true;
+  dependencies.NEEDRDL = true;
 }
 if (options["cc"]) {
   DOING = "CREATECONFIG";
   dependencies.NEEDFS = true;
-  dependencies.NEEDPROMPT = true;
+  //dependencies.NEEDPROMPT = true;
+  dependencies.NEEDRDL = true;
+}
+if (DOING == ""){
+  dependencies.NEEDRDL = true;
 }
 
 ImportDependencies(dependencies);
@@ -78,8 +84,23 @@ if (DOING == "") {
 }
 
 if (DOING == "CREATECONFIG") {
-  process.exit(0);
-}
+  try {
+    const data = GetConfigDataTemplate();
+    (async () => {
+      dsLog
+        .splashScreen()
+        .sleep(500)
+        .showSleep("Creating default config file.", "Info");
+      await fs.writeFile("./.dsconfig", data);
+      dsLog.showSleep("Config was created", "Good");
+      process.exit(1);
+    })();
+ 
+  } catch (error: any) {
+    console.log(error.message);
+    process.exit(0);
+  }
+} else {
 
 //The functions below require the config data.
 (async () => {
@@ -93,6 +114,8 @@ if (DOING == "CREATECONFIG") {
     ScriptParse(configData);
   }
 })();
+
+}
 
 process.on("beforeExit", (code) => {
   // console.clear();
