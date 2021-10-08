@@ -4,7 +4,7 @@
   "description": "Divine Star Script Tool",
   "main": "bin/index.js",
   "files": [
-    "./bin/"
+    "bin"
   ],
   "bin": {
     "dsst": "./bin/index.js"
