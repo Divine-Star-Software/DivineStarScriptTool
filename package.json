@@ -1,6 +1,6 @@
 {
   "name": "dsst",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Divine Star Script Tool",
   "main": "bin/index.js",
   "files": [
@@ -31,6 +31,6 @@
   },
   "dependencies": {
     "yargs": "^13.2.4",
-    "dslog": "1.0.604"
+    "dslog": "1.0.7"
   }
 }
