@@ -1,0 +1,21 @@
+import { ProgramSplashScreen } from "../Helpers/Log/ProgramSplashScreen.js";
+import { ServiceBar } from "../Helpers/Log/ServiceBar.js";
+import {GetConfigData} from "../Helpers/GetConfigData.js";
+import {Sleep} from "../Helpers/Log/Sleep.js";
+import {DSLogger} from "../Helpers/Log/DSLogger.js";
+import {StartSequence} from "../Helpers/StartSequence.js";
+import {ValidateConfigData} from "../Helpers/ValidateConfigData.js";
+import {ComposeScriptMap} from "../Helpers/ScriptMap/ComposeScriptMap.js";
+import {PruneScript} from "../Helpers/Prune/PruneScript.js";
+import {DeployScriptMap} from "../Helpers/ScriptMap/DeployScriptMap.js";
+(global as any).dsLog = new DSLogger();
+(global as any).DeployScriptMap = DeployScriptMap;
+(global as any).PruneScript = PruneScript;
+(global as any).ComposeScriptMap = ComposeScriptMap;
+(global as any).ValidateConfigData = ValidateConfigData;
+(global as any).StartSequence = StartSequence;
+(global as any).ServiceBar = ServiceBar;
+(global as any).ProgramSplashScreen = ProgramSplashScreen;
+(global as any).GetConfigData = GetConfigData;
+(global as any).Sleep = Sleep;
+

@@ -1,0 +1,24 @@
+{
+  "name": "dsst",
+  "version": "0.0.1",
+  "description": "Divine Star Script Tool",
+  "main": "bin/index.js",
+  "bin": {
+    "dsst": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Divine Star LLC",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16.6.1",
+    "tslib": "^2.2.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "prompt": "^1.1.0",
+    "yargs": "^13.2.4"
+  }
+}
