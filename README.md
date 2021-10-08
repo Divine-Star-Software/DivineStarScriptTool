@@ -20,7 +20,7 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
 
 ### Dependencies
-![yargs](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/yargs)
+![yargs](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/yargs?style=plastic)
 ![dslog](https://img.shields.io/npm/dependency-version/dsst/dslog?style=plastic)
 ## What It Does
 This is a tool to create different versions of scripts. Simply it lets you define different code sections with a unqiue comment and either include or remove those
