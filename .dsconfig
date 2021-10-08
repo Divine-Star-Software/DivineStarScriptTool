@@ -6,9 +6,25 @@
       "fileExtensions": [
         "js"
       ]
+    },
+    {
+      "id": "second",
+      "dir": "D:/Divine Star Games/GAMES/IRRCODERAW/js2",
+      "fileExtensions": [
+        "js"
+      ]
     }
   ],
   "outputs": [
+    {
+      "sourceID": "second",
+      "keepComments": false,
+      "dir": "D:/Divine Star Games/GAMES/IRRCODERAW/test2",
+      "codeSection": [
+        "test",
+        "log"
+      ]
+    },
     {
       "sourceID": "main",
       "keepComments": false,

@@ -18,6 +18,17 @@ class DSLogger {
         this.progressBars = {};
         this.serviceBars = {};
     }
+    clearRows(rowStart, rowEnd) {
+        while (rowStart < rowEnd) {
+            let i = 50;
+            while (i--) {
+                rdl.cursorTo(process.stdout, i, rowStart);
+                process.stdout.write(" ");
+            }
+            rowStart++;
+        }
+        return this;
+    }
     getRow() {
         return this.currentRow;
     }
@@ -54,7 +65,6 @@ class DSLogger {
     sleep(ms) {
         var waitTill = new Date(new Date().getTime() + ms);
         while (waitTill > new Date()) { }
-        ;
         return this;
     }
     newScreen() {

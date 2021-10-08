@@ -22,12 +22,23 @@ export class DSLogger implements DSLoggerInterface {
 
   constructor() {}
 
+  clearRows(rowStart: number, rowEnd: number) {
+    while (rowStart < rowEnd) {
+      let i = 50;
+      while (i--) {
+        rdl.cursorTo(process.stdout, i, rowStart);
+        process.stdout.write(" ");
+      }
+      rowStart++;
+    }
+    return this;
+  }
 
-  getRow(){
+  getRow() {
     return this.currentRow;
   }
 
-  setRow(num:number){
+  setRow(num: number) {
     this.currentRow = num;
     rdl.cursorTo(process.stdout, 0, this.currentRow);
     return this;
@@ -37,18 +48,18 @@ export class DSLogger implements DSLoggerInterface {
     this.currentRow++;
     return this;
   }
-   newServiceBar(name: string) {
+  newServiceBar(name: string) {
     const bar = new this.ServiceBar(this.currentRow, 31, 0, 80);
     this.currentRow++;
     this.serviceBars[name] = bar;
     return this;
   }
-   reInitServiceBar(name: string) {
+  reInitServiceBar(name: string) {
     this.serviceBars[name].reInit();
     return this;
   }
 
-   newProgressBar(name: string) {
+  newProgressBar(name: string) {
     const bar = new this.ProgressBar(this.currentRow, 30);
     this.currentRow++;
     bar.start();
@@ -63,8 +74,8 @@ export class DSLogger implements DSLoggerInterface {
 
   sleep(ms: number) {
     var waitTill = new Date(new Date().getTime() + ms);
-    while(waitTill > new Date()){};
-   return this;
+    while (waitTill > new Date()) {}
+    return this;
   }
 
   newScreen() {
@@ -103,8 +114,8 @@ export class DSLogger implements DSLoggerInterface {
   }
 
   showSleep(message: any, type: MessageTypes, sleep: number = 800) {
-  this.show(message, type);
-  this.sleep(sleep);
+    this.show(message, type);
+    this.sleep(sleep);
     return this;
   }
 

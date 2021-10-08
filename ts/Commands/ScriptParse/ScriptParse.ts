@@ -38,12 +38,13 @@ export async function ScriptParse(data: ConfigData) {
     }
   });
   const proms: Promise<void>[] = [];
-  data.sources.forEach((s) => {
-    proms.push(initParse(s, sourceMap[s.id]));
-  });
-  await Promise.all(proms);
+for(let s of data.sources){
+     await initParse(s, sourceMap[s.id]);
+     dsLog.setRow(5).clearRows(5,20);
+}
 
-  dsLog.showSleep("All scripts parsed and deployed.", "Good", 1500);
+
+  dsLog.showSleep("All scripts parsed and deployed.", "Good", 1500).newScreen();
 }
 
 async function initParse(

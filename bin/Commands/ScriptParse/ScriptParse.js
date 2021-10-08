@@ -30,11 +30,11 @@ async function ScriptParse(data) {
         }
     });
     const proms = [];
-    data.sources.forEach((s) => {
-        proms.push(initParse(s, sourceMap[s.id]));
-    });
-    await Promise.all(proms);
-    dsLog.showSleep("All scripts parsed and deployed.", "Good", 1500);
+    for (let s of data.sources) {
+        await initParse(s, sourceMap[s.id]);
+        dsLog.setRow(5).clearRows(5, 20);
+    }
+    dsLog.showSleep("All scripts parsed and deployed.", "Good", 1500).newScreen();
 }
 exports.ScriptParse = ScriptParse;
 async function initParse(source, outputs) {
