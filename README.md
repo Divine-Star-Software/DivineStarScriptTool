@@ -31,6 +31,14 @@
 This is a tool to create different versions of scripts. Simply it lets you define different code sections with a unqiue comment and either include or remove those
 code sections to create different versions. You define where you want the tool to pull scripts from and where you want the scripts to be put.
 
+## Uses
+
+* Create different versions of the same program for different environments.
+* Create auto backups of scripts.
+* Create development and testing versions. 
+* Use the same code base for multiple projects and have them auto sync.
+* Detect file changes and auto copy changed files to a different location.
+
 ### How does it work?
 
 For instance if we have this simple script:
@@ -233,14 +241,6 @@ __NOTE:__ The script will be looking for the start or end string with "//" appen
 > //CODE_SECTION_TAG
 
 Later there will be more options for different languages that do not suppourt comments with forward slashes. If you have any request pleasse make an issue. 
-
-## Uses
-
-* Create different versions of the same program for different environments.
-* Create auto backups of scripts.
-* Create development and testing versions. 
-* Use the same code base for multiple projects and have them auto sync.
-* Detect file changes and auto copy changed files to a different location.
 
 # Config Validation
 
