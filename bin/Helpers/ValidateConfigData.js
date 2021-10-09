@@ -8,7 +8,7 @@ Valdiates the config data that was read in.
 
 @author Luke Johnson
 @since 10-4-2021
-@version 0.0.1
+@version 1.0.5
 */
 async function ValidateConfigData(data) {
     //check sources

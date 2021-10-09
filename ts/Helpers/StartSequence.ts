@@ -1,5 +1,4 @@
 import type { ConfigData } from "../meta/Config/ConfigData.structure.js";
-
 declare const dsLog: DSLogger;
 
 /**
@@ -9,7 +8,7 @@ When the program starts and needs to find the config data and validate it, it wi
 
 @author Luke Johnson
 @since 10-4-2021
-@version 0.0.1
+@version 1.0.5
 */
 export async function StartSequence(): Promise<ConfigData> {
 

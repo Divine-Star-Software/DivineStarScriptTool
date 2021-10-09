@@ -8,7 +8,7 @@ Shows the programs splash screen in the terminal.
 
 @author Luke Johnson
 @since 9-19-2021
-@version 0.0.1
+@version 1.0.5
 */
 function ProgramSplashScreen() {
     console.clear();

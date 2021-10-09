@@ -8,7 +8,7 @@ Makes a simple continous loading bar to show that the program is working.
 
 @author Luke Johnson
 @since 9-19-2021
-@version 0.0.1
+@version 1.0.5
 */
 function ServiceBar(rows = 0, size = 32, start = 2, interval = 150) {
     rdl.cursorTo(process.stdout, start, rows);

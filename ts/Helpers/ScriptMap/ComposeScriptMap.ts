@@ -14,7 +14,7 @@ Compose a json object of the folder, it's sub-folders and all the files.
 
 @author Luke Johnson
 @since 10-7-2021
-@version 0.0.1
+@version 1.0.5
 */
 export async function ComposeScriptMap(
   path: string = "",

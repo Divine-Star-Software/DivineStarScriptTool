@@ -7,7 +7,7 @@ Parses a script given the code sections.
 
 @author Luke Johnson
 @since 10-7-2021
-@version 0.0.1
+@version 1.0.5
 */
 export async function PruneScript(
   file: string,

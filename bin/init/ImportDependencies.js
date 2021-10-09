@@ -10,18 +10,6 @@ function ImportDependencies(dependencies) {
         const watch = require("fs").watch;
         global.watch = watch;
     }
-    /*   if(dependencies.NEEDFSEXTRA){
-        const fsExtra = require("fs-extra");
-        (global as any).fsExtra = fsExtra;
-      } */
-    /*   if (dependencies.NEEDRDL) {
-        const rdl = require("readline");
-        (global as any).rdl = rdl;
-      } */
-    /*  if (dependencies.NEEDPROMPT) {
-       const prompt = require("prompt");
-       (global as any).rdl = prompt;
-     } */
     const dsLog = require("dslog");
     global.dsLog = dsLog;
     dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() => {

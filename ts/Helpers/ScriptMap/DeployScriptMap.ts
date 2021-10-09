@@ -8,7 +8,7 @@ Given a script map it will replicate it at the given location.
 
 @author Luke Johnson
 @since 10-4-2021
-@version 0.0.1
+@version 1.0.5
 */
 export async function DeployScriptMap(
   outdir: string,

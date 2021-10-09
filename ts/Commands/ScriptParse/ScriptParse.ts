@@ -20,7 +20,7 @@ Parse the scripts and move them to the needed location.
 
 @author Luke Johnson
 @since 9-19-2021
-@version 0.0.1
+@version 1.0.5
 */
 export async function ScriptParse(data: ConfigData) {
   await titleTop();

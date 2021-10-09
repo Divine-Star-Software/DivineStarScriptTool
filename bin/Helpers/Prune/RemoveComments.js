@@ -8,7 +8,7 @@ Remove comments from a script.
 
 @author Luke Johnson
 @since 10-7-2021
-@version 0.0.1
+@version 1.0.5
 */
 function RemoveComments(file) {
     return file.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, "");

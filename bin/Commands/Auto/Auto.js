@@ -9,17 +9,11 @@ Auto parse and move scripts to the needed location.
 
 @author Luke Johnson
 @since 9-19-2021
-@version 0.0.1
+@version 1.0.5
 */
 async function Auto(data) {
     await ScriptParse(data);
     await titleTop();
-    /*   setInterval(() => {
-      _ShowAutoMessage(
-        "File Updated",
-        "File was suffucesfully parsed and deployed."
-      );
-    }, 3000); */
     const neededSections = new Map();
     const codeSections = data.codeSections;
     for (let o of data.outputs) {

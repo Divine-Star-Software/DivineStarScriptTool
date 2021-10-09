@@ -10,7 +10,6 @@ const ComposeScriptMap_js_1 = require("../Helpers/ScriptMap/ComposeScriptMap.js"
 const PruneScript_js_1 = require("../Helpers/Prune/PruneScript.js");
 const DeployScriptMap_js_1 = require("../Helpers/ScriptMap/DeployScriptMap.js");
 const RemoveComments_js_1 = require("../Helpers/Prune/RemoveComments.js");
-//(global as any).dsLog = new DSLogger();
 global.RemoveComments = RemoveComments_js_1.RemoveComments;
 global.DeployScriptMap = DeployScriptMap_js_1.DeployScriptMap;
 global.PruneScript = PruneScript_js_1.PruneScript;

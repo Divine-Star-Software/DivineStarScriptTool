@@ -6,7 +6,7 @@
 
 @author Luke Johnson
 @since 9-19-2021
-@version 0.0.1
+@version 1.0.5
 */
 Object.defineProperty(exports, "__esModule", { value: true });
 const ImportDependencies_js_1 = require("./init/ImportDependencies.js");
@@ -121,12 +121,6 @@ else {
         }
     })();
 }
-process.on("beforeExit", (code) => {
-    // console.clear();
-});
-process.on("exit", (code) => {
-    // console.clear();
-});
 process.on("SIGINT", function () {
     console.clear();
     process.exit();

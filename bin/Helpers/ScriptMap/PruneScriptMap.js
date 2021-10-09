@@ -8,7 +8,7 @@ Prunes a script map with the given code section.
 
 @author Luke Johnson
 @since 10-4-2021
-@version 0.0.1
+@version 1.0.5
 */
 async function PruneScriptMap(map, codeSection, keepComments = true) {
     try {
