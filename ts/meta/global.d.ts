@@ -1,4 +1,5 @@
 //Dependencies
+declare const chokidar : any;
 declare const fs: any;
 declare const yargs: any;
 declare const rdl: any;
@@ -27,7 +28,6 @@ declare const PruneScript: (
   keepComments ?: boolean
 ) => string;
 declare const ServiceBar: Function;
-declare const ProgramSplashScreen: Function;
 declare const RemoveComments: Function;
 declare const GetConfigData: Function;
 declare const ComposeScriptMap: (

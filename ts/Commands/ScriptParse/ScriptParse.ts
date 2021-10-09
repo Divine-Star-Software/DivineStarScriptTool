@@ -5,8 +5,8 @@ import type {
   ConfigDataOutput,
   ConfigDataCodeSection,
 } from "../../meta/Config/ConfigData.structure.js";
-import type { DSLoggerInterface } from "../../meta/DSLogger/DSLogger.interface.js";
-declare const dsLog: DSLoggerInterface;
+
+declare const dsLog: DSLogger;
 
 let codeSections: Record<string, ConfigDataCodeSection> = {};
 const neededSections: Map<string | string[], boolean> = new Map();

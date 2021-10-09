@@ -3,8 +3,8 @@ import type {
   ConfigDataSource,
   ConfigDataOutput,
 } from "../../meta/Config/ConfigData.structure.js";
-import type { DSLoggerInterface } from "../../meta/DSLogger/DSLogger.interface.js";
-declare const dsLog: DSLoggerInterface;
+
+declare const dsLog : DSLogger; 
 
 const pruneSections: Map<string[] | string, ConfigDataCodeSection[]> =
   new Map();
@@ -74,26 +74,30 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
 
   dsLog.show(input.dir, "Good");
 
+
   //const deployDirectory = output.dir;
 
-  const watcher = watch(
-    directory,
-    {
-      recursive: true,
-    },
-    (event: any, file: any) => {
-      if (!currentFile.get(file)) {
-        currentFile.set(file, true);
+  chokidar.watch(directory).on("change",
+    (path: string, stats: any) => {
+     
+      if (!currentFile.get(path)) {
+        currentFile.set(path, true);
       } else {
         return;
       }
+
+      const file = path.replace(directory,"");
+
+      console.log(path);
+      console.log(file);
+      dsLog.sleep(10000);
+
+    //  dsLog.show(file,"Raw");
       (async () => {
         dsLog
           .showAt("{----==== UPDATE COMING ====----}", "Warning", 5)
           .setRow(6);
         await Sleep(500);
-        file = file.replace("\\", "/");
-        const path = `${directory}/${file}`;
         const fileRaw = await fs.readFile(path, "utf-8");
         dsLog.show(`--Updating file ${path}`, "Raw");
         await Sleep(100);
@@ -106,9 +110,9 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
             await Sleep(100);
             if (Array.isArray(o.dir)) {
               for (let d of o.dir) {
-                dsLog.show(`--Writing to ${d}/${file}`, "Raw");
+                dsLog.show(`--Writing to ${d}/${path}`, "Raw");
 
-                await fs.writeFile(`${d}/${file}`, newFile);
+                await fs.writeFile(`${d}/${path}`, newFile);
                 dsLog.show(`==Done writing to ${d}/${file}`, "Raw");
               }
             } else {
@@ -122,7 +126,7 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
         }
         dsLog.setRow(6);
         _ShowAutoMessage(`File ${event}`, `${file}`);
-        currentFile.delete(file);
+        currentFile.delete(path);
       })();
     }
   );

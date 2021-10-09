@@ -1,6 +1,6 @@
 import type { ConfigData } from "../meta/Config/ConfigData.structure.js";
-import type { DSLoggerInterface } from "../meta/DSLogger/DSLogger.interface.js";
-declare const dsLog: DSLoggerInterface;
+
+declare const dsLog: DSLogger;
 
 /**
 # Start Sequence
@@ -13,6 +13,7 @@ When the program starts and needs to find the config data and validate it, it wi
 */
 export async function StartSequence(): Promise<ConfigData> {
 
+  
   dsLog
     .splashScreen()
     .sleep(500)

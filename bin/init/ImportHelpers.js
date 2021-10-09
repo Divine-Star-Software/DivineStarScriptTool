@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ProgramSplashScreen_js_1 = require("../Helpers/Log/ProgramSplashScreen.js");
 const ServiceBar_js_1 = require("../Helpers/Log/ServiceBar.js");
 const GetConfigData_js_1 = require("../Helpers/GetConfigData.js");
 const Sleep_js_1 = require("../Helpers/Log/Sleep.js");
@@ -19,6 +18,5 @@ global.ComposeScriptMap = ComposeScriptMap_js_1.ComposeScriptMap;
 global.ValidateConfigData = ValidateConfigData_js_1.ValidateConfigData;
 global.StartSequence = StartSequence_js_1.StartSequence;
 global.ServiceBar = ServiceBar_js_1.ServiceBar;
-global.ProgramSplashScreen = ProgramSplashScreen_js_1.ProgramSplashScreen;
 global.GetConfigData = GetConfigData_js_1.GetConfigData;
 global.Sleep = Sleep_js_1.Sleep;

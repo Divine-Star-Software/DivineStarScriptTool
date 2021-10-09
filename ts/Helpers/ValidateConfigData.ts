@@ -3,8 +3,8 @@ import type {
   ConfigDataSource,
   ConfigDataOutput,
 } from "../meta/Config/ConfigData.structure.js";
-import type { DSLoggerInterface } from "../meta/DSLogger/DSLogger.interface.js";
-declare const dsLog: DSLoggerInterface;
+
+declare const dsLog: DSLogger;
 /**
 # Validate Config Data
 ---

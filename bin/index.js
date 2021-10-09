@@ -34,6 +34,12 @@ const options = yargs
     describe: "Create a default config file in the current directory.",
     type: "boolean",
     demandOption: false,
+})
+    .option("i", {
+    alias: "info",
+    describe: "Get program info.",
+    type: "boolean",
+    demandOption: false,
 }).argv;
 let DOING = "";
 const dependencies = {
@@ -43,6 +49,9 @@ const dependencies = {
     NEEDRDL: false,
     NEEDPROMPT: false,
 };
+if (options["i"]) {
+    DOING = "VERSION";
+}
 if (options["a"]) {
     DOING = "AUTO";
     dependencies.NEEDFS = true;
@@ -69,7 +78,17 @@ if (DOING == "") {
     dsLog
         .splashScreen()
         .show("No option selected. Run with --help to learn how to use this program.", "Raw");
-    process.exit(0);
+    process.exit(1);
+}
+if (DOING == "VERSION") {
+    var pjson = require("../package.json");
+    //author
+    dsLog
+        .splashScreen()
+        .show(`Version : ${pjson.version}`, "Info")
+        .show(`Author : ${pjson.author}`, "Info")
+        .show(`License : ${pjson.license}`, "Info");
+    process.exit(1);
 }
 if (DOING == "CREATECONFIG") {
     try {

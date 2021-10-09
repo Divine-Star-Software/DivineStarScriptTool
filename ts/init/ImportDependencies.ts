@@ -24,7 +24,14 @@ dependencies : Dependencies
   } */
   const dsLog : DSLogger = require("dslog");
   (global as any).dsLog = dsLog;
-  dsLog.defineProgramTitle("[ Divine Star Script Tool]").defineSplashScreen(()=>{
+  dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(()=>{
     dsLog.newScreen().show(dsLog.getString("star"), "Raw").logProgramTitle();
   });
+if(dependencies.NEEDRFSWATCH){
+const chokidar  = require("chokidar");
+(global as any).chokidar = chokidar;
+}
+
+
+
 }

@@ -1,4 +1,4 @@
-import { ProgramSplashScreen } from "../Helpers/Log/ProgramSplashScreen.js";
+
 import { ServiceBar } from "../Helpers/Log/ServiceBar.js";
 import {GetConfigData} from "../Helpers/GetConfigData.js";
 import {Sleep} from "../Helpers/Log/Sleep.js";
@@ -17,7 +17,7 @@ import {RemoveComments} from "../Helpers/Prune/RemoveComments.js";
 (global as any).ValidateConfigData = ValidateConfigData;
 (global as any).StartSequence = StartSequence;
 (global as any).ServiceBar = ServiceBar;
-(global as any).ProgramSplashScreen = ProgramSplashScreen;
+
 (global as any).GetConfigData = GetConfigData;
 (global as any).Sleep = Sleep;
 

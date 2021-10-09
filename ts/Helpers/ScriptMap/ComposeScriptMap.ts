@@ -1,5 +1,4 @@
-import type { DSLoggerInterface } from "../../meta/DSLogger/DSLogger.interface.js";
-declare const dsLog: DSLoggerInterface;
+declare const dsLog: DSLogger;
 import type {
   mapItem,
   filetiem,

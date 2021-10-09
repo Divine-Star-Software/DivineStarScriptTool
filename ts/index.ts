@@ -38,6 +38,12 @@ const options = yargs
     describe: "Create a default config file in the current directory.",
     type: "boolean",
     demandOption: false,
+  })
+  .option("i", {
+    alias: "info",
+    describe: "Get program info.",
+    type: "boolean",
+    demandOption: false,
   }).argv;
 
 let DOING = "";
@@ -49,6 +55,9 @@ const dependencies: Dependencies = {
   NEEDRDL: false,
   NEEDPROMPT: false,
 };
+if (options["i"]) {
+  DOING = "VERSION";
+}
 if (options["a"]) {
   DOING = "AUTO";
   dependencies.NEEDFS = true;
@@ -67,7 +76,7 @@ if (options["cc"]) {
   //dependencies.NEEDPROMPT = true;
   dependencies.NEEDRDL = true;
 }
-if (DOING == ""){
+if (DOING == "") {
   dependencies.NEEDRDL = true;
 }
 
@@ -80,7 +89,17 @@ if (DOING == "") {
       "No option selected. Run with --help to learn how to use this program.",
       "Raw"
     );
-  process.exit(0);
+  process.exit(1);
+}
+if (DOING == "VERSION") {
+  var pjson = require("../package.json");
+  //author
+  dsLog
+    .splashScreen()
+    .show(`Version : ${pjson.version}`, "Info")
+    .show(`Author : ${pjson.author}`, "Info")
+    .show(`License : ${pjson.license}`, "Info");
+  process.exit(1);
 }
 
 if (DOING == "CREATECONFIG") {
@@ -95,26 +114,23 @@ if (DOING == "CREATECONFIG") {
       dsLog.showSleep("Config was created", "Good");
       process.exit(1);
     })();
- 
   } catch (error: any) {
     console.log(error.message);
     process.exit(0);
   }
 } else {
+  //The functions below require the config data.
+  (async () => {
+    //Get and validate the config data
+    const configData = await StartSequence();
 
-//The functions below require the config data.
-(async () => {
-  //Get and validate the config data
-  const configData = await StartSequence();
-
-  if (DOING == "AUTO") {
-    Auto(configData);
-  }
-  if (DOING == "PARSE") {
-    ScriptParse(configData);
-  }
-})();
-
+    if (DOING == "AUTO") {
+      Auto(configData);
+    }
+    if (DOING == "PARSE") {
+      ScriptParse(configData);
+    }
+  })();
 }
 
 process.on("beforeExit", (code) => {
