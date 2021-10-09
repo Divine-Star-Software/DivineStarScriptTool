@@ -41,6 +41,10 @@ code sections to create different versions. You define where you want the tool t
 
 ### How does it work?
 
+Here is a breif video on the tool:
+
+[![youtube video](https://img.youtube.com/vi/nD-cZW4t-i0/1.jpg)](https://www.youtube.com/watch?v=nD-cZW4t-i0)
+
 For instance if we have this simple script:
 ```typescript
 //@ds-test-start
