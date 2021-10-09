@@ -97,7 +97,7 @@ if (DOING == "VERSION") {
   dsLog
     .splashScreen()
     .show(`Version : ${pjson.version}`, "Info")
-    .show(`Author : ${pjson.author}`, "Info")
+    .show(`Author : Divine Star`, "Info")
     .show(`License : ${pjson.license}`, "Info");
   process.exit(1);
 }
