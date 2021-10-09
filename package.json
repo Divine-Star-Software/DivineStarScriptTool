@@ -1,6 +1,6 @@
 {
   "name": "dsst",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Divine Star Script Tool",
   "main": "bin/index.js",
   "files": [
