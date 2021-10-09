@@ -22,7 +22,8 @@
 
 ### Dependencies
 ![yargs](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/yargs?style=plastic)
-![dslog](https://img.shields.io/npm/dependency-version/dsst/dslog?style=plastic)
+![chokidar](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/chokidar?style=plastic)
+![dslog](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/dslog?style=plastic)
 
 ---
 
@@ -313,6 +314,24 @@ DIRECTORY_TO_WATCH
 ```
 
 Once you make an update in the directory a message will appear showing that it got the update and that it parsed and deployed the file. 
+
+It should look something like this:
+
+```console
+{-----------------------------}
+[ Divine Star Script Tool ]
+Running Auto Mode
+|0|0|0|0|0|0XXXXXXXXXXXXXXXXXXX}
+{-----------------------------}
+{----==== UP TO DATE ====----}
+{-----------------------------}
+TIME STAMP: 10:9:1 9/10/2021
+[ UPDATE ]
+FILE CHANGED
+---
+/index.js
+{-----------------------------}
+```
 
 
 

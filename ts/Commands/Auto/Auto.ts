@@ -67,32 +67,15 @@ export async function Auto(data: ConfigData) {
   });
 }
 
-let currentFile = new Map();
 
 function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
   const directory = input.dir;
-
   dsLog.show(input.dir, "Good");
-
-
-  //const deployDirectory = output.dir;
-
   chokidar.watch(directory).on("change",
     (path: string, stats: any) => {
-     
-      if (!currentFile.get(path)) {
-        currentFile.set(path, true);
-      } else {
-        return;
-      }
-
+ 
+      path = path.replace(/\\/g,"/");
       const file = path.replace(directory,"");
-
-      console.log(path);
-      console.log(file);
-      dsLog.sleep(10000);
-
-    //  dsLog.show(file,"Raw");
       (async () => {
         dsLog
           .showAt("{----==== UPDATE COMING ====----}", "Warning", 5)
@@ -125,8 +108,7 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
           await Sleep(500);
         }
         dsLog.setRow(6);
-        _ShowAutoMessage(`File ${event}`, `${file}`);
-        currentFile.delete(path);
+        _ShowAutoMessage(`FILE CHANGED`, `${file}`);
       })();
     }
   );

@@ -27,14 +27,26 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
 
   await dsLog.incrementProgressBar("validate", 10);
 
+  const sources: Map<string, true> = new Map();
+
   if (data.sources[0]) {
-    data.sources.forEach((item, key) => {
+    let key = 0;
+    for (let item of data.sources) {
+      key++;
+
       if (!item.id) {
         throw new Error(`Error with source item ${key}: no id provided.`);
       }
       if (typeof item.id !== "string") {
         throw new Error(`Error with source item ${key}: id is not a string.`);
       }
+
+      if (sources.get(item.id)) {
+        throw new Error(`Error with source item ${key}: id ${item.id} is duplicated.`);
+      } else {
+        sources.set(item.id, true);
+      }
+
       if (!item.dir) {
         throw new Error(
           `Error with source item ${key}: no direcotry provided.`
@@ -43,6 +55,15 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
       if (typeof item.dir !== "string") {
         throw new Error(`Error with source item ${key}: dir is not a string.`);
       }
+
+      try {
+        await fs.access(item.dir);
+      } catch (error: any) {
+        throw new Error(
+          `Error with source item ${key}: the directory could not be accessed.`
+        );
+      }
+
       if (!item.fileExtensions) {
         throw new Error(
           `Error with source item ${key}: no file extensions are provided.`
@@ -62,7 +83,7 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
           }
         });
       }
-    });
+    }
   }
 
   //check outputs
@@ -93,6 +114,13 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
           `Error with output item ${key}: sourceID is not a string.`
         );
       }
+
+      if (!sources.get(item.sourceID)) {
+        throw new Error(
+          `Error with output item ${key}: sourceID ${item.sourceID} is not a known id for a source.`
+        );
+      }
+
       if (!item.dir) {
         throw new Error(
           `Error with output item ${key}: no dir paths provided.`
@@ -106,8 +134,10 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
           `Error with output item ${key}: dir is not a string or a string array.`
         );
       }
-      if (  !("keepComments" in item ) ) {
-        throw new Error(`Error with output item ${key}: is not keepComments provided.`);
+      if (!("keepComments" in item)) {
+        throw new Error(
+          `Error with output item ${key}: is not keepComments provided.`
+        );
       }
       if (typeof item.keepComments !== "boolean") {
         throw new Error(

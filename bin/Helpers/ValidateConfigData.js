@@ -21,19 +21,34 @@ async function ValidateConfigData(data) {
         throw new Error("No sources provided.");
     }
     await dsLog.incrementProgressBar("validate", 10);
+    const sources = new Map();
     if (data.sources[0]) {
-        data.sources.forEach((item, key) => {
+        let key = 0;
+        for (let item of data.sources) {
+            key++;
             if (!item.id) {
                 throw new Error(`Error with source item ${key}: no id provided.`);
             }
             if (typeof item.id !== "string") {
                 throw new Error(`Error with source item ${key}: id is not a string.`);
             }
+            if (sources.get(item.id)) {
+                throw new Error(`Error with source item ${key}: id ${item.id} is duplicated.`);
+            }
+            else {
+                sources.set(item.id, true);
+            }
             if (!item.dir) {
                 throw new Error(`Error with source item ${key}: no direcotry provided.`);
             }
             if (typeof item.dir !== "string") {
                 throw new Error(`Error with source item ${key}: dir is not a string.`);
+            }
+            try {
+                await fs.access(item.dir);
+            }
+            catch (error) {
+                throw new Error(`Error with source item ${key}: the directory could not be accessed.`);
             }
             if (!item.fileExtensions) {
                 throw new Error(`Error with source item ${key}: no file extensions are provided.`);
@@ -48,7 +63,7 @@ async function ValidateConfigData(data) {
                     }
                 });
             }
-        });
+        }
     }
     //check outputs
     (await dsLog.incrementProgressBar("validate", 10))
@@ -69,6 +84,9 @@ async function ValidateConfigData(data) {
             }
             if (typeof item.sourceID !== "string") {
                 throw new Error(`Error with output item ${key}: sourceID is not a string.`);
+            }
+            if (!sources.get(item.sourceID)) {
+                throw new Error(`Error with output item ${key}: sourceID ${item.sourceID} is not a known id for a source.`);
             }
             if (!item.dir) {
                 throw new Error(`Error with output item ${key}: no dir paths provided.`);
