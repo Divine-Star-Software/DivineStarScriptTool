@@ -242,7 +242,10 @@ __NOTE:__ The script will be looking for the start or end string with "//" appen
 
 Later there will be more options for different languages that do not suppourt comments with forward slashes. If you have any request pleasse make an issue. 
 
-# Config Validation
+---
+
+## Command Output
+### Config Validation
 
 If you run either the parse or auto command you will see this sequence:
 
@@ -276,7 +279,9 @@ The script does some type checking and makes sure things are linked together cor
 
 This is to ensure no errors occur when running the program and to prevent potential unwanted effects. 
 
-# Script Parse
+---
+
+### Script Parse
 
 If you run the script parse command and or the auto command you will see this sequence if everything went correctly. 
 
@@ -299,8 +304,9 @@ Starting deploying..
 ==============================
 Scripts succesfully deployed
 ```
+---
 
-# Auto
+### Auto
 
 If you run the auto command you will first see the parse screen and then this screen. 
 
