@@ -9,7 +9,6 @@
 </p>
 
 ---
-### Info
 ![GitHub top language](https://img.shields.io/github/languages/top/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
 ![GitHub repo size](https://img.shields.io/github/repo-size/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
 ![GitHub latest release](https://img.shields.io/github/v/release/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
