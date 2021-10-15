@@ -10,11 +10,6 @@ function ImportDependencies(dependencies) {
         const watch = require("fs").watch;
         global.watch = watch;
     }
-    const dsLog = require("dslog");
-    global.dsLog = dsLog;
-    dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() => {
-        dsLog.newScreen().show(dsLog.getString("star"), "Raw").logProgramTitle();
-    });
     if (dependencies.NEEDRFSWATCH) {
         const chokidar = require("chokidar");
         global.chokidar = chokidar;

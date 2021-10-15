@@ -71,7 +71,7 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
       const file = path.replace(directory,"");
       (async () => {
         dsLog
-          .showAt("{----==== UPDATE COMING ====----}", "Warning", 5)
+          .showAt("{----==== UPDATE COMING ====----}", {type:"Warning", row:5,col:0})
           .setRow(6);
         await Sleep(500);
         const fileRaw = await fs.readFile(path, "utf-8");
@@ -113,23 +113,23 @@ async function titleTop() {
     .show("Starting in auto mode", "Raw")
     .sleep(1000)
     .newScreen()
-    .logSeperator()
-    .logProgramTitle()
+    .showSeparator()
+    .showProgramTitle()
     .sleep(500)
     .show("Running Auto Mode", "Blink")
     .newServiceBar("auto")
-    .logSeperator();
+    .showSeparator();
 }
 
 async function _title() {
   await dsLog
     .newScreen()
-    .logSeperator()
-    .logProgramTitle()
+    .showSeparator()
+    .showProgramTitle()
     .show("Running Auto Mode", "Blink")
     .addRow()
     .reInitServiceBar("auto")
-    .logSeperator();
+    .showSeparator();
 }
 
 async function _ShowAutoMessage(title: string, message: string) {
@@ -147,7 +147,7 @@ ${message}`;
 
   dsLog
     .show("{----==== UP TO DATE ====----}", "Good")
-    .logSeperator()
+    .logSeparator()
     .show(update, "Raw")
-    .logSeperator();
+    .logSeparator();
 }

@@ -8,44 +8,18 @@
 @version 1.0.5
 */
 
-declare const dsLog: DSLogger;
+
 import { ImportDependencies } from "./init/ImportDependencies.js";
 import "./init/ImportHelpers.js";
 import "./init/ImportCommands.js";
 import { GetConfigDataTemplate } from "./Helpers/GetConfigDataTemplate.js";
 
-const yargs = require("yargs");
-(global as any).yargs = yargs;
-const options = yargs
-  .usage(
-    `This program requires a config file to run. You can create a default config file by running the program with the "--cc" flag.`
-  )
-  .option("a", {
-    alias: "auto",
-    describe: "Auto deploy and parse scripts.",
-    type: "boolean",
-    demandOption: false,
-  })
-  .option("p", {
-    alias: "parse",
-    describe: "Parse and deploy scripts.",
-    type: "boolean",
-    demandOption: false,
-  })
-
-  .option("cc", {
-    alias: "create-config",
-    describe: "Create a default config file in the current directory.",
-    type: "boolean",
-    demandOption: false,
-  })
-  .option("i", {
-    alias: "info",
-    describe: "Get program info.",
-    type: "boolean",
-    demandOption: false,
-  }).argv;
-
+const dsLog : DSLogger = require("dslog");
+(global as any).dsLog = dsLog;
+dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(()=>{
+  dsLog.newScreen().show(dsLog.getString("star"), "Raw").logProgramTitle();
+});
+  (async () => {
 let DOING = "";
 
 const dependencies: Dependencies = {
@@ -55,29 +29,65 @@ const dependencies: Dependencies = {
   NEEDRDL: false,
   NEEDPROMPT: false,
 };
-if (options["i"]) {
+
+
+dsLog
+.defineHelpText(
+'This program requires a config file to run. You can create a default config file by running the program with the "--cc" flag.'
+)
+.addParam({
+  flag : "a",
+  name : "auto",
+  desc : "Auto deploy and parse scripts.",
+  type : "boolean"
+})
+.addParam({
+  flag : "p",
+  name : "parse",
+  desc : "Parse and deploy scripts.",
+  type : "boolean"
+})
+.addParam({
+  flag : "cc",
+  name : "create-config",
+  desc : "Create a default config file in the current directory.",
+  type : "boolean"
+})
+.addParam({
+  flag : "i",
+  name : "info",
+  desc : "Get program info",
+  type : "boolean"
+});
+(await dsLog.initProgramInput())
+.ifParamIsset("i",(value : any,args : any)=>{
   DOING = "VERSION";
-}
-if (options["a"]) {
+  return true;
+})
+.ifParamIsset("auto",(value : any,args : any)=>{
   DOING = "AUTO";
   dependencies.NEEDFS = true;
   dependencies.NEEDRFSWATCH = true;
   dependencies.NEEDFSEXTRA = true;
-  dependencies.NEEDRDL = true;
-}
-if (options["p"]) {
+
+  return true;
+})
+.ifParamIsset("p",(value : any,args : any)=>{
   DOING = "PARSE";
   dependencies.NEEDFS = true;
-  dependencies.NEEDRDL = true;
-}
-if (options["cc"]) {
+  return true;
+})
+.ifParamIsset("cc",(value : any,args : any)=>{
   DOING = "CREATECONFIG";
   dependencies.NEEDFS = true;
-  //dependencies.NEEDPROMPT = true;
-  dependencies.NEEDRDL = true;
-}
+  return true;
+});
+
+
+
+
 if (DOING == "") {
-  dependencies.NEEDRDL = true;
+
 }
 
 ImportDependencies(dependencies);
@@ -136,3 +146,6 @@ process.on("SIGINT", function () {
   console.clear();
   process.exit();
 });
+
+
+  })();

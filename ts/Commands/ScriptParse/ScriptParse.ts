@@ -143,9 +143,9 @@ async function titleTop() {
     .show("Starting script parse", "Raw")
     .sleep(1000)
     .newScreen()
-    .logSeperator()
+    .logSeparator()
     .logProgramTitle()
     .showSleep("Running Script Parse", "Blink")
-    .logSeperator()
+    .logSeparator()
     .newProgressBar("parse");
 }
