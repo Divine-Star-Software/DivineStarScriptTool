@@ -20,7 +20,6 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/lucasdamianjohnson/DivineStarScriptTool?color=purple&style=plastic)
 
 ### Dependencies
-![yargs](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/yargs?style=plastic)
 ![chokidar](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/chokidar?style=plastic)
 ![dslog](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/dslog?style=plastic)
 
