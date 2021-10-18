@@ -1,4 +1,4 @@
-declare const dsCom: dsComger;
+declare const dsCom: DSCommander;
 import type {
   mapItem,
   filetiem,

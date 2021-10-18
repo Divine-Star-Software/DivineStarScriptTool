@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dsComger = void 0;
+exports.DSCommander = void 0;
 /**
-# dsComger
+# DSCommander
 ---
 Helper class for the programs output.
 
@@ -10,7 +10,7 @@ Helper class for the programs output.
 @since 9-19-2021
 @version 1.0.5
 */
-class dsComger {
+class DSCommander {
     constructor() {
         this.ProgressBar = LoadingBar;
         this.ServiceBar = ServiceBar;
@@ -153,7 +153,7 @@ class dsComger {
         return this;
     }
 }
-exports.dsComger = dsComger;
+exports.DSCommander = DSCommander;
 class LoadingBar {
     constructor(row, size) {
         this.row = row;

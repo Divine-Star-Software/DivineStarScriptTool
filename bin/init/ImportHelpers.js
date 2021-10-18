@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ServiceBar_js_1 = require("../Helpers/Log/ServiceBar.js");
 const GetConfigData_js_1 = require("../Helpers/GetConfigData.js");
 const Sleep_js_1 = require("../Helpers/Log/Sleep.js");
-//import {dsComger} from "../Helpers/Log/dsComger.js";
+//import {DSCommander} from "../Helpers/Log/DSCommander.js";
 const StartSequence_js_1 = require("../Helpers/StartSequence.js");
 const ValidateConfigData_js_1 = require("../Helpers/ValidateConfigData.js");
 const ComposeScriptMap_js_1 = require("../Helpers/ScriptMap/ComposeScriptMap.js");

@@ -40,9 +40,9 @@ declare const DeployScriptMap: (
   keepComments ?: boolean
 ) => Promise<boolean>;
 
-type dsComgerInterface =
-  import("../../meta/dsComger/dsComger.interface").dsComgerInterface;
-declare const dsCom: dsComgerInterface;
+type DSCommanderInterface =
+  import("../../meta/DSCommander/DSCommander.interface").DSCommanderInterface;
+declare const dsCom: DSCommanderInterface;
 
 type Dependencies = {
   NEEDFS: boolean;

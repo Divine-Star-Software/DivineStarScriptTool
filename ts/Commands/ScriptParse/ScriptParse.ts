@@ -6,7 +6,7 @@ import type {
   ConfigDataCodeSection,
 } from "../../meta/Config/ConfigData.structure.js";
 
-declare const dsCom: dsComger;
+declare const dsCom: DSCommander;
 
 let codeSections: Record<string, ConfigDataCodeSection> = {};
 const neededSections: Map<string | string[], boolean> = new Map();

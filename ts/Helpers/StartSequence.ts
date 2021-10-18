@@ -1,5 +1,5 @@
 import type { ConfigData } from "../meta/Config/ConfigData.structure.js";
-declare const dsCom: dsComger;
+declare const dsCom: DSCommander;
 
 /**
 # Start Sequence

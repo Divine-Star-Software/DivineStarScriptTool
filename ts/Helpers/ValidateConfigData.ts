@@ -4,7 +4,7 @@ import type {
   ConfigDataOutput,
 } from "../meta/Config/ConfigData.structure.js";
 
-declare const dsCom: dsComger;
+declare const dsCom: DSCommander;
 /**
 # Validate Config Data
 ---

@@ -14,7 +14,7 @@ import "./init/ImportHelpers.js";
 import "./init/ImportCommands.js";
 import { GetConfigDataTemplate } from "./Helpers/GetConfigDataTemplate.js";
 
-const dsCom : dsComger = require("dscom");
+const dsCom : DSCommander = require("dscom");
 (global as any).dsCom = dsCom;
 dsCom.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(()=>{
   dsCom.newScreen().show(dsCom.getString("star"), "Raw").logProgramTitle();
