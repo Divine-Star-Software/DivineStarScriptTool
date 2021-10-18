@@ -1,4 +1,4 @@
-declare const dsLog: DSLogger;
+declare const dsCom: dsComger;
 import type {
   mapItem,
   filetiem,
@@ -99,7 +99,7 @@ async function _getDir(path: string): Promise<mapItem> {
 
 async function _addProgress(){
   if( !(currentCount % 5)  ) {
-    await dsLog.incrementProgressBar(`${scriptMapDir}-map`,(((100/fileCount)) ) );
+    await dsCom.incrementProgressBar(`${scriptMapDir}-map`,(((100/fileCount)) ) );
   }
 
 

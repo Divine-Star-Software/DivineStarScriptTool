@@ -12,15 +12,15 @@ Valdiates the config data that was read in.
 */
 async function ValidateConfigData(data) {
     //check sources
-    dsLog.show("Validating sources...", "Info");
+    dsCom.show("Validating sources...", "Info");
     if (!Array.isArray(data.sources)) {
         throw new Error("Sources is not an array.");
     }
-    await dsLog.incrementProgressBar("validate", 10);
+    await dsCom.incrementProgressBar("validate", 10);
     if (data?.sources[0] == undefined) {
         throw new Error("No sources provided.");
     }
-    await dsLog.incrementProgressBar("validate", 10);
+    await dsCom.incrementProgressBar("validate", 10);
     const sources = new Map();
     if (data.sources[0]) {
         let key = 0;
@@ -66,17 +66,17 @@ async function ValidateConfigData(data) {
         }
     }
     //check outputs
-    (await dsLog.incrementProgressBar("validate", 10))
+    (await dsCom.incrementProgressBar("validate", 10))
         .showSleep("Sources are good.", "Good", 300)
         .show("Validating outputs...", "Info");
     if (!Array.isArray(data.outputs)) {
         throw new Error("Sources is not an array.");
     }
-    await dsLog.incrementProgressBar("validate", 10);
+    await dsCom.incrementProgressBar("validate", 10);
     if (data?.outputs[0] == undefined) {
         throw new Error("No sources provided.");
     }
-    await dsLog.incrementProgressBar("validate", 10);
+    await dsCom.incrementProgressBar("validate", 10);
     if (data.outputs[0]) {
         data.outputs.forEach((item, key) => {
             if (!item.sourceID) {
@@ -127,7 +127,7 @@ async function ValidateConfigData(data) {
             }
         });
     }
-    (await dsLog.incrementProgressBar("validate", 10))
+    (await dsCom.incrementProgressBar("validate", 10))
         .showSleep("Outputs are good.", "Good", 300)
         .show("Validating code sections...", "Info");
     //check code sections
@@ -135,7 +135,7 @@ async function ValidateConfigData(data) {
     if (sections.length < 1) {
         throw new Error(`Error with code sections. No code sections provided.`);
     }
-    await dsLog.incrementProgressBar("validate", 10);
+    await dsCom.incrementProgressBar("validate", 10);
     sections.forEach((item) => {
         if (typeof item !== "string") {
             throw new Error(`Error with code section ${item}. Code section is not a string`);
@@ -153,7 +153,7 @@ async function ValidateConfigData(data) {
             throw new Error(`Error with code section ${item}. End is not a string.`);
         }
     });
-    (await dsLog.incrementProgressBar("validate", 40)).show("Code sections are good.", "Good");
+    (await dsCom.incrementProgressBar("validate", 40)).show("Code sections are good.", "Good");
     return true;
 }
 exports.ValidateConfigData = ValidateConfigData;

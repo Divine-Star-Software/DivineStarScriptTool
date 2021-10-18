@@ -2,7 +2,7 @@
 import { ServiceBar } from "../Helpers/Log/ServiceBar.js";
 import {GetConfigData} from "../Helpers/GetConfigData.js";
 import {Sleep} from "../Helpers/Log/Sleep.js";
-//import {DSLogger} from "../Helpers/Log/DSLogger.js";
+//import {dsComger} from "../Helpers/Log/dsComger.js";
 import {StartSequence} from "../Helpers/StartSequence.js";
 import {ValidateConfigData} from "../Helpers/ValidateConfigData.js";
 import {ComposeScriptMap} from "../Helpers/ScriptMap/ComposeScriptMap.js";

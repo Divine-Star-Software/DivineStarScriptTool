@@ -21,7 +21,7 @@
 
 ### Dependencies
 ![chokidar](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/chokidar?style=plastic)
-![dslog](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/dslog?style=plastic)
+![dsCom](https://img.shields.io/github/package-json/dependency-version/lucasdamianjohnson/DivineStarScriptTool/dsCom?style=plastic)
 
 ---
 

@@ -4,7 +4,7 @@ import type {
   ConfigDataOutput,
 } from "../../meta/Config/ConfigData.structure.js";
 
-declare const dsLog : DSLogger; 
+declare const dsCom : dsComger; 
 
 const pruneSections: Map<string[] | string, ConfigDataCodeSection[]> =
   new Map();
@@ -63,44 +63,44 @@ export async function Auto(data: ConfigData) {
 
 function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
   const directory = input.dir;
-  dsLog.show(input.dir, "Good");
+  dsCom.show(input.dir, "Good");
   chokidar.watch(directory).on("change",
     (path: string, stats: any) => {
  
       path = path.replace(/\\/g,"/");
       const file = path.replace(directory,"");
       (async () => {
-        dsLog
+        dsCom
           .showAt("{----==== UPDATE COMING ====----}", {type:"Warning", row:5,col:0})
           .setRow(6);
         await Sleep(500);
         const fileRaw = await fs.readFile(path, "utf-8");
-        dsLog.show(`--Updating file ${path}`, "Raw");
+        dsCom.show(`--Updating file ${path}`, "Raw");
         await Sleep(100);
         for (let o of outputs) {
           const cs = pruneSections.get(o.codeSection);
           if (cs) {
-            dsLog.show(`--Prunning for ${o.codeSection}`, "Raw");
+            dsCom.show(`--Prunning for ${o.codeSection}`, "Raw");
             let newFile = await PruneScript(fileRaw, cs,o.keepComments);
-            dsLog.show(`==Done prunning for ${o.codeSection}`, "Raw");
+            dsCom.show(`==Done prunning for ${o.codeSection}`, "Raw");
             await Sleep(100);
             if (Array.isArray(o.dir)) {
               for (let d of o.dir) {
-                dsLog.show(`--Writing to ${d}/${path}`, "Raw");
+                dsCom.show(`--Writing to ${d}/${path}`, "Raw");
 
                 await fs.writeFile(`${d}/${path}`, newFile);
-                dsLog.show(`==Done writing to ${d}/${file}`, "Raw");
+                dsCom.show(`==Done writing to ${d}/${file}`, "Raw");
               }
             } else {
               const d = o.dir;
-              dsLog.show(`--Writing to ${d}/${file}`, "Raw");
+              dsCom.show(`--Writing to ${d}/${file}`, "Raw");
               await fs.writeFile(`${d}/${file}`, newFile);
-              dsLog.show(`==Done writing to ${d}/${file}`, "Raw");
+              dsCom.show(`==Done writing to ${d}/${file}`, "Raw");
             }
           }
           await Sleep(500);
         }
-        dsLog.setRow(6);
+        dsCom.setRow(6);
         _ShowAutoMessage(`FILE CHANGED`, `${file}`);
       })();
     }
@@ -108,7 +108,7 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
 }
 
 async function titleTop() {
-  await dsLog
+  await dsCom
     .newScreen()
     .show("Starting in auto mode", "Raw")
     .sleep(1000)
@@ -122,7 +122,7 @@ async function titleTop() {
 }
 
 async function _title() {
-  await dsLog
+  await dsCom
     .newScreen()
     .showSeparator()
     .showProgramTitle()
@@ -145,7 +145,7 @@ ${t}
 ---
 ${message}`;
 
-  dsLog
+  dsCom
     .show("{----==== UP TO DATE ====----}", "Good")
     .logSeparator()
     .show(update, "Raw")

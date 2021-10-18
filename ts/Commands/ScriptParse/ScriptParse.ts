@@ -6,7 +6,7 @@ import type {
   ConfigDataCodeSection,
 } from "../../meta/Config/ConfigData.structure.js";
 
-declare const dsLog: DSLogger;
+declare const dsCom: dsComger;
 
 let codeSections: Record<string, ConfigDataCodeSection> = {};
 const neededSections: Map<string | string[], boolean> = new Map();
@@ -40,11 +40,11 @@ export async function ScriptParse(data: ConfigData) {
   const proms: Promise<void>[] = [];
 for(let s of data.sources){
      await initParse(s, sourceMap[s.id]);
-     dsLog.setRow(5).clearRows(5,20);
+     dsCom.setRow(5).clearRows(5,20);
 }
 
 
-  dsLog.showSleep("All scripts parsed and deployed.", "Good", 1500).newScreen();
+  dsCom.showSleep("All scripts parsed and deployed.", "Good", 1500).newScreen();
 }
 
 async function initParse(
@@ -52,12 +52,12 @@ async function initParse(
   outputs: ConfigDataOutput[]
 ) {
   const dir = source.dir;
-  dsLog.show("Searching for script source.", "Info").show(source.dir, "Raw");
+  dsCom.show("Searching for script source.", "Info").show(source.dir, "Raw");
 
   try {
     //find folder
     await fs.access(dir);
-    dsLog
+    dsCom
       .showSleep("Found folder", "Good", 500)
       .show("Starting script mapping.", "Info")
       .newProgressBar(`${dir}-map`);
@@ -65,7 +65,7 @@ async function initParse(
     //create script map
     const scriptMap = await ComposeScriptMap(dir, source.fileExtensions);
 
-    (await dsLog.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3))
+    (await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3))
       .showSleep("Finished Script Map", "Good", 500)
       .show("Starting script pruning.", "Info")
       .newProgressBar(`${dir}-prune`);
@@ -93,9 +93,9 @@ async function initParse(
 
       const newMap = await PruneScriptMap(mapCopy, codeSectionsArray);
       scriptMaps.set(c, newMap);
-      await dsLog.incrementProgressBar(`${dir}-prune`, (1 / numSections) * 100);
+      await dsCom.incrementProgressBar(`${dir}-prune`, (1 / numSections) * 100);
     }
-    (await dsLog.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3))
+    (await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3))
       .show(`Scripts were pruned.`, "Good")
       .showSleep("Starting deploying..", "Info", 500)
       .newProgressBar(`${dir}-deploy`);
@@ -117,18 +117,18 @@ async function initParse(
           await DeployScriptMap(o.dir, map,o.keepComments);
         }
       }
-      await dsLog.incrementProgressBar(`${dir}-deploy`, (1 / numOuputs) * 100);
+      await dsCom.incrementProgressBar(`${dir}-deploy`, (1 / numOuputs) * 100);
     }
 
     (
-      await dsLog.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3)
+      await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3)
     ).showSleep("Scripts succesfully deployed", "Good");
 
     await Sleep(500);
   } catch (error: any) {
     if (error.message.includes("no such file or directory")) {
-      dsLog.show(`Error the script directory was not found.`, "Error");
-      dsLog.show(error.message, "Raw");
+      dsCom.show(`Error the script directory was not found.`, "Error");
+      dsCom.show(error.message, "Raw");
     } else {
       console.log(error);
     }
@@ -138,7 +138,7 @@ async function initParse(
 }
 
 async function titleTop() {
-  await dsLog
+  await dsCom
     .newScreen()
     .show("Starting script parse", "Raw")
     .sleep(1000)

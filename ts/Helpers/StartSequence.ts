@@ -1,5 +1,5 @@
 import type { ConfigData } from "../meta/Config/ConfigData.structure.js";
-declare const dsLog: DSLogger;
+declare const dsCom: dsComger;
 
 /**
 # Start Sequence
@@ -13,26 +13,26 @@ When the program starts and needs to find the config data and validate it, it wi
 export async function StartSequence(): Promise<ConfigData> {
 
   
-  dsLog
+  dsCom
     .splashScreen()
     .sleep(500)
     .showSleep("Searching for config data...", "Info",500);
 
   const configData = await GetConfigData();
-  dsLog
+  dsCom
     .showSleep("Found config data.", "Good",500)
     .showSleep("Validating config data.", "Info", 500)
     .newProgressBar("validate");
 
   try {
     await ValidateConfigData(configData);
-    dsLog
+    dsCom
       .showSleep("Data is good.", "Good", 800)
       .showSleep(configData, "Data", 800)
       .newScreen();
     return configData;
   } catch (error: any) {
-    dsLog.show(`ERROR VALIDATING CONFIG DATA\n${error.message}`, "Error");
+    dsCom.show(`ERROR VALIDATING CONFIG DATA\n${error.message}`, "Error");
     process.exit();
   }
 }

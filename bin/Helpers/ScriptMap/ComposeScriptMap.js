@@ -91,6 +91,6 @@ async function _getDir(path) {
 }
 async function _addProgress() {
     if (!(currentCount % 5)) {
-        await dsLog.incrementProgressBar(`${scriptMapDir}-map`, (((100 / fileCount))));
+        await dsCom.incrementProgressBar(`${scriptMapDir}-map`, (((100 / fileCount))));
     }
 }

@@ -14,10 +14,10 @@ import "./init/ImportHelpers.js";
 import "./init/ImportCommands.js";
 import { GetConfigDataTemplate } from "./Helpers/GetConfigDataTemplate.js";
 
-const dsLog : DSLogger = require("dslog");
-(global as any).dsLog = dsLog;
-dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(()=>{
-  dsLog.newScreen().show(dsLog.getString("star"), "Raw").logProgramTitle();
+const dsCom : dsComger = require("dscom");
+(global as any).dsCom = dsCom;
+dsCom.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(()=>{
+  dsCom.newScreen().show(dsCom.getString("star"), "Raw").logProgramTitle();
 });
   (async () => {
 let DOING = "";
@@ -31,7 +31,7 @@ const dependencies: Dependencies = {
 };
 
 
-dsLog
+dsCom
 .defineHelpText(
 'This program requires a config file to run. You can create a default config file by running the program with the "--cc" flag.'
 )
@@ -59,7 +59,7 @@ dsLog
   desc : "Get program info",
   type : "boolean"
 });
-(await dsLog.initProgramInput())
+(await dsCom.initProgramInput())
 .ifParamIsset("i",(value : any,args : any)=>{
   DOING = "VERSION";
   return true;
@@ -93,7 +93,7 @@ if (DOING == "") {
 ImportDependencies(dependencies);
 
 if (DOING == "") {
-  dsLog
+  dsCom
     .splashScreen()
     .show(
       "No option selected. Run with --help to learn how to use this program.",
@@ -104,7 +104,7 @@ if (DOING == "") {
 if (DOING == "VERSION") {
   var pjson = require("../package.json");
   //author
-  dsLog
+  dsCom
     .splashScreen()
     .show(`Version : ${pjson.version}`, "Info")
     .show(`Author : Divine Star`, "Info")
@@ -116,12 +116,12 @@ if (DOING == "CREATECONFIG") {
   try {
     const data = GetConfigDataTemplate();
     (async () => {
-      dsLog
+      dsCom
         .splashScreen()
         .sleep(500)
         .showSleep("Creating default config file.", "Info");
       await fs.writeFile("./.dsconfig", data);
-      dsLog.showSleep("Config was created", "Good");
+      dsCom.showSleep("Config was created", "Good");
       process.exit(1);
     })();
   } catch (error: any) {

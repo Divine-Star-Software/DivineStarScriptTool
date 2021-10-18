@@ -13,10 +13,10 @@ const ImportDependencies_js_1 = require("./init/ImportDependencies.js");
 require("./init/ImportHelpers.js");
 require("./init/ImportCommands.js");
 const GetConfigDataTemplate_js_1 = require("./Helpers/GetConfigDataTemplate.js");
-const dsLog = require("dslog");
-global.dsLog = dsLog;
-dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() => {
-    dsLog.newScreen().show(dsLog.getString("star"), "Raw").logProgramTitle();
+const dsCom = require("dscom");
+global.dsCom = dsCom;
+dsCom.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() => {
+    dsCom.newScreen().show(dsCom.getString("star"), "Raw").logProgramTitle();
 });
 (async () => {
     let DOING = "";
@@ -27,7 +27,7 @@ dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
         NEEDRDL: false,
         NEEDPROMPT: false,
     };
-    dsLog
+    dsCom
         .defineHelpText('This program requires a config file to run. You can create a default config file by running the program with the "--cc" flag.')
         .addParam({
         flag: "a",
@@ -53,7 +53,7 @@ dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
         desc: "Get program info",
         type: "boolean"
     });
-    (await dsLog.initProgramInput())
+    (await dsCom.initProgramInput())
         .ifParamIsset("i", (value, args) => {
         DOING = "VERSION";
         return true;
@@ -79,7 +79,7 @@ dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
     }
     ImportDependencies_js_1.ImportDependencies(dependencies);
     if (DOING == "") {
-        dsLog
+        dsCom
             .splashScreen()
             .show("No option selected. Run with --help to learn how to use this program.", "Raw");
         process.exit(1);
@@ -87,7 +87,7 @@ dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
     if (DOING == "VERSION") {
         var pjson = require("../package.json");
         //author
-        dsLog
+        dsCom
             .splashScreen()
             .show(`Version : ${pjson.version}`, "Info")
             .show(`Author : Divine Star`, "Info")
@@ -98,12 +98,12 @@ dsLog.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
         try {
             const data = GetConfigDataTemplate_js_1.GetConfigDataTemplate();
             (async () => {
-                dsLog
+                dsCom
                     .splashScreen()
                     .sleep(500)
                     .showSleep("Creating default config file.", "Info");
                 await fs.writeFile("./.dsconfig", data);
-                dsLog.showSleep("Config was created", "Good");
+                dsCom.showSleep("Config was created", "Good");
                 process.exit(1);
             })();
         }

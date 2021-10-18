@@ -40,9 +40,9 @@ declare const DeployScriptMap: (
   keepComments ?: boolean
 ) => Promise<boolean>;
 
-type DSLoggerInterface =
-  import("../../meta/DSLogger/DSLogger.interface").DSLoggerInterface;
-declare const dsLog: DSLoggerInterface;
+type dsComgerInterface =
+  import("../../meta/dsComger/dsComger.interface").dsComgerInterface;
+declare const dsCom: dsComgerInterface;
 
 type Dependencies = {
   NEEDFS: boolean;

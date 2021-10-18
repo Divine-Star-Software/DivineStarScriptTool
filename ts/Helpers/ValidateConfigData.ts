@@ -4,7 +4,7 @@ import type {
   ConfigDataOutput,
 } from "../meta/Config/ConfigData.structure.js";
 
-declare const dsLog: DSLogger;
+declare const dsCom: dsComger;
 /**
 # Validate Config Data
 ---
@@ -16,16 +16,16 @@ Valdiates the config data that was read in.
 */
 export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
   //check sources
-  dsLog.show("Validating sources...", "Info");
+  dsCom.show("Validating sources...", "Info");
   if (!Array.isArray(data.sources)) {
     throw new Error("Sources is not an array.");
   }
-  await dsLog.incrementProgressBar("validate", 10);
+  await dsCom.incrementProgressBar("validate", 10);
   if (data?.sources[0] == undefined) {
     throw new Error("No sources provided.");
   }
 
-  await dsLog.incrementProgressBar("validate", 10);
+  await dsCom.incrementProgressBar("validate", 10);
 
   const sources: Map<string, true> = new Map();
 
@@ -88,7 +88,7 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
 
   //check outputs
 
-  (await dsLog.incrementProgressBar("validate", 10))
+  (await dsCom.incrementProgressBar("validate", 10))
     .showSleep("Sources are good.", "Good", 300)
     .show("Validating outputs...", "Info");
 
@@ -96,13 +96,13 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
     throw new Error("Sources is not an array.");
   }
 
-  await dsLog.incrementProgressBar("validate", 10);
+  await dsCom.incrementProgressBar("validate", 10);
 
   if (data?.outputs[0] == undefined) {
     throw new Error("No sources provided.");
   }
 
-  await dsLog.incrementProgressBar("validate", 10);
+  await dsCom.incrementProgressBar("validate", 10);
 
   if (data.outputs[0]) {
     data.outputs.forEach((item, key) => {
@@ -181,7 +181,7 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
     });
   }
 
-  (await dsLog.incrementProgressBar("validate", 10))
+  (await dsCom.incrementProgressBar("validate", 10))
     .showSleep("Outputs are good.", "Good", 300)
     .show("Validating code sections...", "Info");
   //check code sections
@@ -190,7 +190,7 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
   if (sections.length < 1) {
     throw new Error(`Error with code sections. No code sections provided.`);
   }
-  await dsLog.incrementProgressBar("validate", 10);
+  await dsCom.incrementProgressBar("validate", 10);
 
   sections.forEach((item) => {
     if (typeof item !== "string") {
@@ -214,7 +214,7 @@ export async function ValidateConfigData(data: ConfigData): Promise<boolean> {
     }
   });
 
-  (await dsLog.incrementProgressBar("validate", 40)).show(
+  (await dsCom.incrementProgressBar("validate", 40)).show(
     "Code sections are good.",
     "Good"
   );

@@ -22,6 +22,6 @@ function ProgramSplashScreen() {
    [1m[35mX[0m[1m[35mO[0m[1m[35mX[0m[1m[35m'[0m   [1m[35m'[0m[1m[35mX[0m[1m[35mO[0m[1m[35mX[0m
   [1m[35mX[0m[1m[35m'[0m         [1m[35m'[0m[1m[35mX[0m`;
     console.log(star);
-    dsLog.logProgramTitle();
+    dsCom.logProgramTitle();
 }
 exports.ProgramSplashScreen = ProgramSplashScreen;
