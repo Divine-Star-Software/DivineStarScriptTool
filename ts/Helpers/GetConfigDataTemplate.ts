@@ -5,7 +5,7 @@ export function GetConfigDataTemplate(): string {
     sources: [
       {
         dir: "/",
-        fileExtensions: [".js"],
+        fileExtensions: ["js"],
         id: "main",
       },
     ],

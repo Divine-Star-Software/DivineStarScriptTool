@@ -93,7 +93,7 @@ It should then generate the following file.
         {
             "dir": "/",
             "fileExtensions": [
-                ".js"
+                "js"
             ],
             "id": "main"
         }
@@ -166,7 +166,7 @@ The tool requires a config file to run.
         {
             "dir": "/",
             "fileExtensions": [
-                ".js"
+                "js"
             ],
             "id": "main"
         }
