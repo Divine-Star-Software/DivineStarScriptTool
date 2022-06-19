@@ -44,7 +44,7 @@ for(let s of data.sources){
 }
 
 
-  dsCom.showSleep("All scripts parsed and deployed.", "Good", 1500).newScreen();
+  dsCom.showSleep("All scripts parsed and deployed.", "Good", 500).newScreen();
 }
 
 async function initParse(
@@ -58,7 +58,7 @@ async function initParse(
     //find folder
     await fs.access(dir);
     dsCom
-      .showSleep("Found folder", "Good", 500)
+      .showSleep("Found folder", "Good", 200)
       .show("Starting script mapping.", "Info")
       .newProgressBar(`${dir}-map`);
 
@@ -66,7 +66,7 @@ async function initParse(
     const scriptMap = await ComposeScriptMap(dir, source.fileExtensions);
 
     (await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3))
-      .showSleep("Finished Script Map", "Good", 500)
+      .showSleep("Finished Script Map", "Good", 200)
       .show("Starting script pruning.", "Info")
       .newProgressBar(`${dir}-prune`);
 
@@ -97,7 +97,7 @@ async function initParse(
     }
     (await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3))
       .show(`Scripts were pruned.`, "Good")
-      .showSleep("Starting deploying..", "Info", 500)
+      .showSleep("Starting deploying..", "Info", 200)
       .newProgressBar(`${dir}-deploy`);
 
     //deploy
@@ -124,7 +124,7 @@ async function initParse(
       await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3)
     ).showSleep("Scripts succesfully deployed", "Good");
 
-    await Sleep(500);
+    await Sleep(200);
   } catch (error: any) {
     if (error.message.includes("no such file or directory")) {
       dsCom.show(`Error the script directory was not found.`, "Error");
@@ -141,7 +141,7 @@ async function titleTop() {
   await dsCom
     .newScreen()
     .show("Starting script parse", "Raw")
-    .sleep(1000)
+    .sleep(300)
     .newScreen()
     .logSeparator()
     .logProgramTitle()

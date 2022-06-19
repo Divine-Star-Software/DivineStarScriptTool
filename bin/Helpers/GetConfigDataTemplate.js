@@ -6,7 +6,7 @@ function GetConfigDataTemplate() {
         sources: [
             {
                 dir: "/",
-                fileExtensions: [".js"],
+                fileExtensions: ["js"],
                 id: "main",
             },
         ],

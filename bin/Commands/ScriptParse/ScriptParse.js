@@ -34,7 +34,7 @@ async function ScriptParse(data) {
         await initParse(s, sourceMap[s.id]);
         dsCom.setRow(5).clearRows(5, 20);
     }
-    dsCom.showSleep("All scripts parsed and deployed.", "Good", 1500).newScreen();
+    dsCom.showSleep("All scripts parsed and deployed.", "Good", 500).newScreen();
 }
 exports.ScriptParse = ScriptParse;
 async function initParse(source, outputs) {
@@ -44,13 +44,13 @@ async function initParse(source, outputs) {
         //find folder
         await fs.access(dir);
         dsCom
-            .showSleep("Found folder", "Good", 500)
+            .showSleep("Found folder", "Good", 200)
             .show("Starting script mapping.", "Info")
             .newProgressBar(`${dir}-map`);
         //create script map
         const scriptMap = await ComposeScriptMap(dir, source.fileExtensions);
         (await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3))
-            .showSleep("Finished Script Map", "Good", 500)
+            .showSleep("Finished Script Map", "Good", 200)
             .show("Starting script pruning.", "Info")
             .newProgressBar(`${dir}-prune`);
         const numSections = neededSections.size;
@@ -71,13 +71,13 @@ async function initParse(source, outputs) {
             }
             if (c === "all" || c === "All") {
             }
-            const newMap = await PruneScriptMap_js_1.PruneScriptMap(mapCopy, codeSectionsArray);
+            const newMap = await (0, PruneScriptMap_js_1.PruneScriptMap)(mapCopy, codeSectionsArray);
             scriptMaps.set(c, newMap);
             await dsCom.incrementProgressBar(`${dir}-prune`, (1 / numSections) * 100);
         }
         (await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3))
             .show(`Scripts were pruned.`, "Good")
-            .showSleep("Starting deploying..", "Info", 500)
+            .showSleep("Starting deploying..", "Info", 200)
             .newProgressBar(`${dir}-deploy`);
         //deploy
         const numOuputs = outputs.length;
@@ -99,7 +99,7 @@ async function initParse(source, outputs) {
             await dsCom.incrementProgressBar(`${dir}-deploy`, (1 / numOuputs) * 100);
         }
         (await dsCom.incrementProgressBar("parse", ((1 / totalSources) * 100) / 3)).showSleep("Scripts succesfully deployed", "Good");
-        await Sleep(500);
+        await Sleep(200);
     }
     catch (error) {
         if (error.message.includes("no such file or directory")) {
@@ -116,7 +116,7 @@ async function titleTop() {
     await dsCom
         .newScreen()
         .show("Starting script parse", "Raw")
-        .sleep(1000)
+        .sleep(300)
         .newScreen()
         .logSeparator()
         .logProgramTitle()

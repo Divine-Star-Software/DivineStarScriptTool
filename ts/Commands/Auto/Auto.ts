@@ -73,7 +73,7 @@ function initWatch(input: ConfigDataSource, outputs: ConfigDataOutput[]) {
         dsCom
           .showAt("{----==== UPDATE COMING ====----}", {type:"Warning", row:5,col:0})
           .setRow(6);
-        await Sleep(500);
+        await Sleep(200);
         const fileRaw = await fs.readFile(path, "utf-8");
         dsCom.show(`--Updating file ${path}`, "Raw");
         await Sleep(100);
@@ -111,11 +111,11 @@ async function titleTop() {
   await dsCom
     .newScreen()
     .show("Starting in auto mode", "Raw")
-    .sleep(1000)
+    .sleep(500)
     .newScreen()
     .showSeparator()
     .showProgramTitle()
-    .sleep(500)
+    .sleep(100)
     .show("Running Auto Mode", "Blink")
     .newServiceBar("auto")
     .showSeparator();

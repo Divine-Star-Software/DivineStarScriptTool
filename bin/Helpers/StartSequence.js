@@ -14,17 +14,17 @@ async function StartSequence() {
     dsCom
         .splashScreen()
         .sleep(500)
-        .showSleep("Searching for config data...", "Info", 500);
+        .showSleep("Searching for config data...", "Info", 200);
     const configData = await GetConfigData();
     dsCom
-        .showSleep("Found config data.", "Good", 500)
-        .showSleep("Validating config data.", "Info", 500)
+        .showSleep("Found config data.", "Good", 200)
+        .showSleep("Validating config data.", "Info", 200)
         .newProgressBar("validate");
     try {
         await ValidateConfigData(configData);
         dsCom
-            .showSleep("Data is good.", "Good", 800)
-            .showSleep(configData, "Data", 800)
+            .showSleep("Data is good.", "Good", 300)
+            .showSleep(configData, "Data", 300)
             .newScreen();
         return configData;
     }

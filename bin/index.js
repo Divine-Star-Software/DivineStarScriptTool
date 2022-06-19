@@ -15,7 +15,9 @@ require("./init/ImportCommands.js");
 const GetConfigDataTemplate_js_1 = require("./Helpers/GetConfigDataTemplate.js");
 const dsCom = require("dscom");
 global.dsCom = dsCom;
-dsCom.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() => {
+dsCom
+    .defineProgramTitle("[ Divine Star Script Tool ]")
+    .defineSplashScreen(() => {
     dsCom.newScreen().show(dsCom.getString("star"), "Raw").logProgramTitle();
 });
 (async () => {
@@ -27,35 +29,47 @@ dsCom.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
         NEEDRDL: false,
         NEEDPROMPT: false,
     };
+    let configFileName = ".dsconfig";
     dsCom
+        .defineSleepTime(10)
         .defineHelpText('This program requires a config file to run. You can create a default config file by running the program with the "--cc" flag.')
+        .addParam({
+        flag: "c",
+        name: "config-file",
+        desc: "Override the default config file name for running the tool.",
+        type: "string",
+    })
         .addParam({
         flag: "a",
         name: "auto",
         desc: "Auto deploy and parse scripts.",
-        type: "boolean"
+        type: "boolean",
     })
         .addParam({
         flag: "p",
         name: "parse",
         desc: "Parse and deploy scripts.",
-        type: "boolean"
+        type: "boolean",
     })
         .addParam({
         flag: "cc",
         name: "create-config",
         desc: "Create a default config file in the current directory.",
-        type: "boolean"
+        type: "boolean",
     })
         .addParam({
         flag: "i",
         name: "info",
         desc: "Get program info",
-        type: "boolean"
+        type: "boolean",
     });
     (await dsCom.initProgramInput())
         .ifParamIsset("i", (value, args) => {
         DOING = "VERSION";
+        return true;
+    })
+        .ifParamIsset("config-file", (value, args) => {
+        configFileName = value;
         return true;
     })
         .ifParamIsset("auto", (value, args) => {
@@ -75,9 +89,7 @@ dsCom.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
         dependencies.NEEDFS = true;
         return true;
     });
-    if (DOING == "") {
-    }
-    ImportDependencies_js_1.ImportDependencies(dependencies);
+    (0, ImportDependencies_js_1.ImportDependencies)(dependencies);
     if (DOING == "") {
         dsCom
             .splashScreen()
@@ -96,20 +108,19 @@ dsCom.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
     }
     if (DOING == "CREATECONFIG") {
         try {
-            const data = GetConfigDataTemplate_js_1.GetConfigDataTemplate();
+            const data = (0, GetConfigDataTemplate_js_1.GetConfigDataTemplate)();
             (async () => {
                 dsCom
                     .splashScreen()
                     .sleep(500)
                     .showSleep("Creating default config file.", "Info");
-                await fs.writeFile("./.dsconfig", data);
+                await fs.writeFile(`./${configFileName}`, data);
                 dsCom.showSleep("Config was created", "Good");
                 process.exit(1);
             })();
         }
         catch (error) {
-            console.log(error.message);
-            process.exit(0);
+            dsCom.ERROR.show(error.message).exit();
         }
     }
     else {
@@ -126,7 +137,6 @@ dsCom.defineProgramTitle("[ Divine Star Script Tool ]").defineSplashScreen(() =>
         })();
     }
     process.on("SIGINT", function () {
-        console.clear();
-        process.exit();
+        dsCom.CLEAR.exit();
     });
 })();
