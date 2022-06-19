@@ -10,7 +10,7 @@ When the program starts and needs to find the config data and validate it, it wi
 @since 10-4-2021
 @version 1.0.5
 */
-export async function StartSequence(): Promise<ConfigData> {
+export async function StartSequence(fileName : string): Promise<ConfigData> {
 
   
   dsCom
@@ -18,7 +18,7 @@ export async function StartSequence(): Promise<ConfigData> {
     .sleep(500)
     .showSleep("Searching for config data...", "Info",200);
 
-  const configData = await GetConfigData();
+  const configData = await GetConfigData(fileName);
   dsCom
     .showSleep("Found config data.", "Good",200)
     .showSleep("Validating config data.", "Info", 200)

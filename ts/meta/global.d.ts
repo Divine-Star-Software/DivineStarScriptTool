@@ -20,7 +20,7 @@ declare const ScriptParse: (data: configData) => Promise<void>;
 declare const CreateDefaultConfig: Function;
 //Helpers
 declare const ValidateConfigData: (data: configData) => boolean;
-declare const StartSequence: () => Promise<configData>;
+declare const StartSequence: (fileName : string) => Promise<configData>;
 declare const Sleep: Function;
 declare const PruneScript: (
   file: string,

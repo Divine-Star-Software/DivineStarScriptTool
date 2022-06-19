@@ -1,9 +1,9 @@
 import type { ConfigData } from "../meta/Config/ConfigData.structure";
 
-export async function GetConfigData() : Promise<ConfigData> {
+export async function GetConfigData(fileName : string) : Promise<ConfigData> {
 
     try{
-    const configDataRaw = await fs.readFile(".dsconfig", "utf8");
+    const configDataRaw = await fs.readFile(fileName, "utf8");
     const removedComments = _removeComments(configDataRaw);
 
     const configData =  JSON.parse(removedComments);

@@ -139,7 +139,7 @@ dsCom
     //The functions below require the config data.
     (async () => {
       //Get and validate the config data
-      const configData = await StartSequence();
+      const configData = await StartSequence(configFileName);
 
       if (DOING == "AUTO") {
         Auto(configData);

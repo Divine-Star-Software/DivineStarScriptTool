@@ -71,6 +71,7 @@ After that it pretty simple to use. Here are the commands:
 | Command | Description | 
 | --------------- | --------------- |
 | __dsst --cc__ | Generate a default config file |
+| __dsst --c__ | Override the default config file name. The defautl is `.dsconfig` |
 | __dsst -p__ | Parse and deploy scripts. |
 | __dsst -a__ | Watch for changes and auto parse and deploy scripts. | 
 | __dsst -i__ | Get info about the program. | 
